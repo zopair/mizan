@@ -182,6 +182,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;text-align:center;color:v
 // application or calculation code. Set GUMROAD_URL to the approved live
 // product URL to activate the buy buttons.
 const GUMROAD_URL = "https://zopair.gumroad.com/l/jumwtt";
+const OFFER_URL = GUMROAD_URL + "/MIZAN19";
 const T = {
 en:{
   heroTitle:"Upload your file. Make your call.",
@@ -227,7 +228,8 @@ function applyLang(){
 document.getElementById("langToggle").onclick=()=>{lang=lang==="ar"?"en":"ar";applyLang();};
 const toast=document.getElementById("toast");
 document.querySelectorAll(".buy").forEach(b=>b.onclick=()=>{
-  if(GUMROAD_URL){location.href=GUMROAD_URL;return;}
+  const url=b.classList.contains("secondary")?OFFER_URL:GUMROAD_URL;
+  if(url){location.href=url;return;}
   toast.textContent=T[lang].toast;toast.classList.add("show");
   setTimeout(()=>toast.classList.remove("show"),3200);
 });
